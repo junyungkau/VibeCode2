@@ -25,7 +25,7 @@ export default async function handler(req, res) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
       body: JSON.stringify({
-        model: 'google/gemma-4-31b-it',
+        model: 'google/gemma-3-12b-it',
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: text.slice(0, 6000) }
