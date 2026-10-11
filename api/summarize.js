@@ -25,13 +25,13 @@ export default async function handler(req, res) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
       body: JSON.stringify({
-        model: 'google/gemma-3-12b-it',
+        model: 'openai/gpt-oss-20b',
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: text.slice(0, 6000) }
         ],
         temperature: 0.3,
-        max_tokens: 500,
+        max_tokens: 1500,
         stream: false
       })
     });
