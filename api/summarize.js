@@ -10,7 +10,9 @@ export default async function handler(req, res) {
   const { text } = req.body || {};
   if (!text || text.length < 50) return res.status(400).json({ error: '요약할 글이 너무 짧습니다.' });
 
-  const systemPrompt = `너는 한국어 요약 전문가다. 주어진 글을 정확히 3줄로 요약한다.
+  const systemPrompt = `Reasoning: low
+
+너는 한국어 요약 전문가다. 주어진 글을 정확히 3줄로 요약한다.
 
 규칙:
 - 각 줄은 한 문장, 40자 이내로 간결하게
@@ -31,7 +33,7 @@ export default async function handler(req, res) {
           { role: 'user', content: text.slice(0, 6000) }
         ],
         temperature: 0.3,
-        max_tokens: 1500,
+        max_tokens: 3000,
         stream: false
       })
     });
