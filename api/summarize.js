@@ -36,8 +36,9 @@ export default async function handler(req, res) {
       })
     });
     if (!r.ok) {
-      console.error('NVIDIA API error:', r.status, await r.text());
-      return res.status(502).json({ error: 'AI 호출 실패' });
+      const detail = (await r.text()).slice(0, 200);
+      console.error('NVIDIA API error:', r.status, detail);
+      return res.status(502).json({ error: 'AI 호출 실패', status: r.status, detail });
     }
     const data = await r.json();
     const parsed = extractJson(data?.choices?.[0]?.message?.content || '');
